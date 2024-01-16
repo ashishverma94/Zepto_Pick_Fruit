@@ -1,0 +1,38 @@
+.chip-card-option{
+    height: 100%;
+    padding: 4px 0px 4px 4px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin: 0;
+}
+
+.left{
+    width: 18%;
+    text-align: left;
+}
+
+.middle{
+    width: 40%;
+    text-align: left;
+}
+
+.name{
+    font-weight: bold;
+}
+
+img{
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+ul{
+    position: absolute;
+    margin-top: 6px;
+    width: 300px;
+    max-height: 240px;
+    overflow: scroll;
+    overflow-x: hidden;
+}

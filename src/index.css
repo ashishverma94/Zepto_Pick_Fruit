@@ -1,13 +1,125 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body{
+  height:100vh;
+}
+
+h1{
+  margin-top: 20px;
+ text-align: center;
+ color: purple;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+}
+
+.tags-input-container{
+  margin-top: 20px;
+  padding:0.5em;
+  border-bottom: 3px solid rgb(23, 168, 226);
+  width: min(80vw,600px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5em;
+}
+
+.tag-item{
+  background-color: rgb(188, 186, 186);
+  display:inline-block;
+  /* padding:.1em .15em; */
+  padding: 3px 0 3px 0;
+  border-radius: 20px;
+  margin: 4px;
+  vertical-align: middle;
+}
+
+.tag-item img{
+  margin: 0 0 0 4px;
+  vertical-align: middle;
+}
+
+.tag-item .close{
+  height: 20px;
+  width: 20px;
+  display: inline-flex;
+  color:#0f0f0f;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5em;
+  margin-right: 0.2em;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+button{
+  background: none;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.tags-input{
+  flex-grow: 1;
+  padding: .5em 0;
+  border: none;
+  outline: none;
+  position: relative;
+  font-weight: 200;
+  font-size: 17px;
+  margin-left: 10px;
+}
+
+.tags-input::placeholder{
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container-autocomplete{
+  width: 280px;
+  border:1px solid #d4d4d4;
+}
+
+.container-autocomplete input{
+  width: 90%;
+  border: none;
+  margin: 10px 0;
+  font-size: 16px ;
+  padding:10px 10px 0 10px ;
+}
+
+input:focus{
+  outline: none;
+}
+
+.suggestions{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #d4d4d4;
+  box-shadow: 1px 1px 1cqi #afaaaa;
+
+}
+
+.suggestions li{
+  list-style: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+.suggestions li :hover{
+  background-color: rgb(206, 201, 201);
+}
+
+footer{
+  bottom: 0;
+  position: absolute;
+  margin-bottom: 10px;
+  
 }
