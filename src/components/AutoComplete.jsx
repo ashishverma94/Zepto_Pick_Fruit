@@ -10,6 +10,7 @@ const AutoComplete = ({ options = FruitData }) => {
     const [value, setValue] = useState("");
     const [showSuggestions, setShowSuggestions] = useState(false);
     const refOne = useRef(null) ;
+    const refTwo = useRef() ;
 
     // UPDATE SUGGESTIONS 
     const updatePermitValues=(value,flag)=>{
@@ -24,6 +25,12 @@ const AutoComplete = ({ options = FruitData }) => {
     useEffect(()=>{
         document.addEventListener('click', handleClickOutside,true)
     },[])
+
+    // MOVE CURSOR AUTOMATICALLY TO INPUT FIELD
+    useEffect(()=>{
+        if ( refTwo.current.value == '' && tags.length > 0)
+            refTwo.current.focus() ;
+    },[tags])
 
     const handleClickOutside = (e)=>{
         if ( !refOne.current.contains(e.target)){
@@ -89,6 +96,7 @@ const AutoComplete = ({ options = FruitData }) => {
                 className="tags-input" 
                 type='text' 
                 placeholder='Add new fruit'
+                ref={refTwo}
                 value={value}
                 onChange={handleChange}
                 onFocus={() => setShowSuggestions(true)}
