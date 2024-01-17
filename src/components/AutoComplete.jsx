@@ -34,6 +34,7 @@ const AutoComplete = ({ options = FruitData }) => {
             refTwo.current.focus();
     }, [tags])
 
+    // CLOSE ALL SUGGESTIONS
     const handleClickOutside = (e) => {
         if (!refOne.current.contains(e.target)) {
             setShowSuggestions(false)
@@ -78,6 +79,7 @@ const AutoComplete = ({ options = FruitData }) => {
         setValue(event.target.value);
     }
 
+    // ADD TAG TO CONTAINER
     const handleSuggestionClick = (newFruit, newUrl = "", i) => {
         updatePermitValues(newFruit, false);
         setTags([...tags, [newFruit, newUrl]]);
