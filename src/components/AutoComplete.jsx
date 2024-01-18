@@ -5,12 +5,12 @@ import ChipCardOptions from './chips/ChipCardOptions.jsx';
 const AutoComplete = ({ options = FruitData }) => {
     const [markDelete, setMarkDelete] = useState(0);
     const [isPermitted, setIsPermitted] = useState(new Array(options.length).fill(true));
-    let   [mySuggestions, setMySuggestions] = useState(options)
+    let [mySuggestions, setMySuggestions] = useState(options)
     const [tags, setTags] = useState([]);
     const [value, setValue] = useState("");
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const [alength, setAlength] = useState(0) ;
-    const [borderFlag, setBorderFlag] = useState([]) ;
+    const [alength, setAlength] = useState(0);
+    const [borderFlag, setBorderFlag] = useState([]);
     const refOne = useRef(null);
     const refTwo = useRef();
 
@@ -43,22 +43,22 @@ const AutoComplete = ({ options = FruitData }) => {
 
     // HANDLE MAKING TAGS
     const handleKeyDown = (e, i) => {
-        if ( markDelete === 0 ){
-            setMarkDelete(1) ;
-            borderFlag[borderFlag.length-1] = '3px solid red'
-            return ;
-        }else{
-            setMarkDelete(0) ;
-        }
 
         if (e.target.value === "" && tags.length > 0 && e.key === 'Backspace') {
+            if (markDelete === 0) {
+                setMarkDelete(1);
+                borderFlag[borderFlag.length - 1] = '3px solid red'
+                return;
+            } else {
+                setMarkDelete(0);
+            }
             const isDeleted = tags[tags.length - 1][0];
             updatePermitValues(isDeleted, true);
             tags.pop();
-            setAlength(alength-1) ;
+            setAlength(alength - 1);
             setTags([...tags]);
             isPermitted[i] = true;
-            borderFlag.pop() ;
+            borderFlag.pop();
         }
     }
 
@@ -66,7 +66,7 @@ const AutoComplete = ({ options = FruitData }) => {
     const removeTag = (index, tag) => {
         updatePermitValues(tag, true);
         setTags(tags.filter((el, i) => i !== index))
-        borderFlag.pop() ;
+        borderFlag.pop();
     }
 
     // HANDLE AUTOCOMPLETE
@@ -77,29 +77,30 @@ const AutoComplete = ({ options = FruitData }) => {
     // HANDLE AUTOCOMPLETE FUNCTION
     const handleChange = (event) => {
         setValue(event.target.value);
+        borderFlag[borderFlag.length - 1] = 'none'
     }
 
     // ADD TAG TO CONTAINER
     const handleSuggestionClick = (newFruit, newUrl = "", i) => {
         updatePermitValues(newFruit, false);
         setTags([...tags, [newFruit, newUrl]]);
-        setAlength(alength+1) ;
+        setAlength(alength + 1);
         borderFlag.push('none')
         setValue('');
     }
 
     return (
         <div ref={refOne} className='tags-input-conainer'>
-                {
-                    tags.map((tag, index) => (
-                        <div className='tag-item' style={{border: borderFlag[index]}} key={index}>
-                            <img src={tag[1]} height='20px' width='20px' alt="TagImage" />
-                            <span className='text'>{tag[0]}</span>
+            {
+                tags.map((tag, index) => (
+                    <div className='tag-item' style={{ border: borderFlag[index] }} key={index}>
+                        <img src={tag[1]} height='20px' width='20px' alt="TagImage" />
+                        <span className='text'>{tag[0]}</span>
 
-                            <span className='close' onClick={() => removeTag(index, tag[0])}><button>&times;</button></span>
-                        </div>
-                    ))
-                }
+                        <span className='close' onClick={() => removeTag(index, tag[0])}><button>&times;</button></span>
+                    </div>
+                ))
+            }
 
 
             <input
